@@ -1,0 +1,14 @@
+{
+  "projectType": "webapp",
+  "assertions": [
+    {
+      "name": "tsc-no-emit",
+      "kind": "process",
+      "command": "npx",
+      "args": ["tsc", "--noEmit"],
+      "verificationMethod": "exit-code",
+      "expected": "0",
+      "timeoutSeconds": 180
+    }
+  ]
+}

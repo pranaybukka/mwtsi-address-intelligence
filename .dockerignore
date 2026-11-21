@@ -1,0 +1,17 @@
+node_modules/
+.next/
+.git/
+.gitignore
+README.md
+*.log
+.env.local
+.env.*.local
+.DS_Store
+.tsupgrader/
+work/
+.vscode/
+*.xlsx
+*.zip
+dist/
+coverage/
+.turbo/

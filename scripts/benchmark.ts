@@ -1,0 +1,4 @@
+import {ensureSeed} from '../src/db/seed';
+import {reference} from '../src/lib/reference/sqlite';
+import {processAddress} from '../src/lib/process';
+ensureSeed();const count=Number(process.argv[2]||10000);if(!Number.isInteger(count)||count<1||count>100000)throw Error('Count must be 1..100000');const start=performance.now();let errors=0;for(let i=0;i<count;i++){const r=processAddress({Name:`BENEFICIARY ${i}`,Address1:`${100+i} EXAMPLE ROAD`,Address2:'SUITE 400',Address3:i%2?'BERLIN 10117 GERMANY':'BOSTON MA 02110'},reference,`benchmark:${i}`);if(r.status==='ERROR')errors++;}console.log(JSON.stringify({count,errors,elapsedSeconds:Number(((performance.now()-start)/1000).toFixed(2)),note:'Synthetic repeated localities, unique street numbers. Engine only; no Excel/HTTP or million-row gazetteer claim.'}));

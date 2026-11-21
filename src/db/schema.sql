@@ -1,0 +1,18 @@
+PRAGMA journal_mode=WAL;
+CREATE TABLE IF NOT EXISTS metadata (key TEXT PRIMARY KEY,value TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS countries (code TEXT PRIMARY KEY,alpha3 TEXT NOT NULL,name TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS country_aliases (alias TEXT NOT NULL,country TEXT NOT NULL,PRIMARY KEY(alias,country));
+CREATE TABLE IF NOT EXISTS subdivisions (country TEXT NOT NULL,code TEXT NOT NULL,name TEXT NOT NULL,PRIMARY KEY(country,code));
+CREATE TABLE IF NOT EXISTS subdivision_aliases (alias TEXT NOT NULL,country TEXT NOT NULL,code TEXT NOT NULL,PRIMARY KEY(alias,country,code));
+CREATE TABLE IF NOT EXISTS places (id TEXT PRIMARY KEY,country TEXT NOT NULL,name TEXT NOT NULL,normalized_name TEXT NOT NULL,subdivision TEXT NOT NULL DEFAULT '',source TEXT NOT NULL);
+CREATE INDEX IF NOT EXISTS places_name ON places(normalized_name,country);
+CREATE INDEX IF NOT EXISTS places_country ON places(country);
+CREATE TABLE IF NOT EXISTS place_aliases (alias TEXT NOT NULL,place_id TEXT NOT NULL,PRIMARY KEY(alias,place_id));
+CREATE TABLE IF NOT EXISTS postal_codes (country TEXT NOT NULL,postal TEXT NOT NULL,place_id TEXT NOT NULL,subdivision TEXT NOT NULL DEFAULT '',PRIMARY KEY(country,postal,place_id));
+CREATE INDEX IF NOT EXISTS postal_lookup ON postal_codes(postal,country);
+CREATE TABLE IF NOT EXISTS postal_patterns (country TEXT PRIMARY KEY,pattern TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS address_tokens (country TEXT NOT NULL,token TEXT NOT NULL,kind TEXT NOT NULL,PRIMARY KEY(country,token));
+CREATE TABLE IF NOT EXISTS batches (id TEXT PRIMARY KEY,filename TEXT NOT NULL,created_at TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS records (id TEXT PRIMARY KEY,batch_id TEXT NOT NULL,payload TEXT NOT NULL,version INTEGER NOT NULL DEFAULT 0);
+CREATE INDEX IF NOT EXISTS records_batch ON records(batch_id);
+CREATE TABLE IF NOT EXISTS review_events (id INTEGER PRIMARY KEY AUTOINCREMENT,record_id TEXT NOT NULL,event TEXT NOT NULL);

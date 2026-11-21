@@ -1,0 +1,41 @@
+{
+  "planHash": "1a4a78beb0044c65ff177a032e44f6937d459abafada542387ea8e8b0fba5c9c",
+  "phase": "baseline",
+  "recordedAtUtc": "2026-11-20T18:45:44.7020988Z",
+  "retryCount": 0,
+  "resetBaseline": true,
+  "complete": true,
+  "result": {
+    "setupSucceeded": true,
+    "setupDurationMs": 0,
+    "setupFailureOutput": null,
+    "assertions": [
+      {
+        "name": "tsc-no-emit",
+        "kind": "process",
+        "verificationMethod": "exit-code",
+        "passed": false,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 1,
+        "outputSample": "node:internal/modules/cjs/loader:1244\r\n  throw err;\r\n  ^\r\n\r\nError: Cannot find module \u0027C:\\Users\\prana\\OneDrive\\Desktop\\Pranay\\Learning\\Manny_MWTSI_-_Address_Intelligence\\Re__MWTSI_-_Address_Intelligence\\mwtsi-address-intelligence-v1-4\\hybrid-address\\node_modules\\typescript\\bin\\tsc\u0027\r\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1241:15)\r\n    at Function._load (node:internal/modules/cjs/loader:1066:27)\r\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\r\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:151:5)\r\n    at node:internal/main/run_main_module:33:47 {\r\n  code: \u0027MODULE_NOT_FOUND\u0027,\r\n  requireStack: []\r\n}\r\n\r\nNode.js v23.4.0\r\n",
+        "durationMs": 3313
+      }
+    ],
+    "executions": [
+      {
+        "source": "tsc-no-emit",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npx.CMD",
+        "args": [
+          "tsc",
+          "--noEmit"
+        ],
+        "cwd": "C:\\Users\\prana\\OneDrive\\Desktop\\Pranay\\Learning\\Manny_MWTSI_-_Address_Intelligence\\Re__MWTSI_-_Address_Intelligence\\mwtsi-address-intelligence-v1-4\\hybrid-address",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      }
+    ]
+  }
+}
